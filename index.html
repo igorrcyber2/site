@@ -1,0 +1,527 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BLACK GARAGE | Supercars</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #080808;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+header {
+  height: 80px;
+  padding: 0 7%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #111;
+  border-bottom: 2px solid #e50914;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.logo {
+  font-size: 26px;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+.logo span,
+.hero h1 span,
+.section-title span,
+footer span {
+  color: #e50914;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin-left: 25px;
+  font-size: 14px;
+}
+
+nav a:hover {
+  color: #e50914;
+}
+
+.hero {
+  min-height: 570px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 30px;
+  background:
+    linear-gradient(#0008, #000b),
+    url("https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1800")
+    center/cover;
+}
+
+.hero h1 {
+  font-size: clamp(45px, 8vw, 90px);
+  font-weight: 900;
+  letter-spacing: 4px;
+}
+
+.hero p {
+  color: #ddd;
+  font-size: 18px;
+  margin: 20px 0 35px;
+}
+
+.btn {
+  padding: 16px 35px;
+  background: #e50914;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: .3s;
+}
+
+.btn:hover {
+  background: white;
+  color: #e50914;
+}
+
+.section {
+  padding: 75px 7%;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 38px;
+  margin-bottom: 15px;
+}
+
+.subtitle {
+  text-align: center;
+  color: #999;
+  margin-bottom: 35px;
+}
+
+.search-box {
+  display: block;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto 25px;
+  padding: 16px;
+  background: #171717;
+  border: 1px solid #444;
+  color: white;
+  outline: none;
+  font-size: 16px;
+}
+
+.search-box:focus {
+  border-color: #e50914;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 40px;
+}
+
+.filters button {
+  padding: 11px 19px;
+  background: #171717;
+  color: white;
+  border: 1px solid #444;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.filters button:hover,
+.filters button.active {
+  background: #e50914;
+  border-color: #e50914;
+}
+
+.car-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+}
+
+.car-card {
+  background: #141414;
+  border: 1px solid #292929;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: .3s;
+}
+
+.car-card:hover {
+  transform: translateY(-8px);
+  border-color: #e50914;
+  box-shadow: 0 10px 30px #e5091422;
+}
+
+.car-card img {
+  width: 100%;
+  height: 210px;
+  object-fit: cover;
+  display: block;
+}
+
+.car-info {
+  padding: 20px;
+}
+
+.car-info h3 {
+  color: white;
+  margin-bottom: 15px;
+  font-size: 20px;
+}
+
+.car-info p {
+  color: #aaa;
+  margin: 9px 0;
+  font-size: 14px;
+}
+
+.car-info p strong {
+  color: white;
+}
+
+.car-price {
+  color: #e50914;
+  font-size: 22px;
+  font-weight: bold;
+  margin-top: 15px;
+}
+
+.favorite {
+  width: 100%;
+  padding: 13px;
+  margin-top: 18px;
+  background: #222;
+  border: 1px solid #e50914;
+  color: white;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.favorite:hover,
+.favorite.selected {
+  background: #e50914;
+}
+
+.empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: #aaa;
+  padding: 40px;
+}
+
+.about {
+  background: #111;
+  text-align: center;
+}
+
+.about p {
+  color: #aaa;
+  max-width: 650px;
+  margin: 20px auto;
+  line-height: 1.8;
+}
+
+footer {
+  text-align: center;
+  padding: 30px;
+  background: #050505;
+  border-top: 2px solid #e50914;
+  color: #888;
+}
+
+@media(max-width: 650px) {
+  header {
+    height: auto;
+    padding: 20px;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  nav a {
+    margin: 0 8px;
+  }
+
+  .hero {
+    min-height: 430px;
+  }
+
+  .section {
+    padding: 50px 5%;
+  }
+
+  .section-title {
+    font-size: 30px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">BLACK <span>GARAGE</span></div>
+
+  <nav>
+    <a href="#home">Главная</a>
+    <a href="#cars">Автомобили</a>
+    <a href="#about">О нас</a>
+  </nav>
+</header>
+
+<section class="hero" id="home">
+  <h1>DRIVE YOUR <span>DREAM</span></h1>
+  <p>Мир самых красивых и мощных автомобилей</p>
+  <a href="#cars" class="btn">НАША КОЛЛЕКЦИЯ</a>
+</section>
+
+<section class="section" id="cars">
+
+  <h2 class="section-title">OUR <span>COLLECTION</span></h2>
+  <p class="subtitle">Выбери автомобиль своей мечты</p>
+
+  <input
+    type="text"
+    id="search"
+    class="search-box"
+    placeholder="🔍 Поиск автомобиля..."
+  >
+
+  <div class="filters">
+    <button class="active" data-brand="All">Все</button>
+    <button data-brand="BMW">BMW</button>
+    <button data-brand="Mercedes">Mercedes</button>
+    <button data-brand="Ferrari">Ferrari</button>
+    <button data-brand="Lamborghini">Lamborghini</button>
+    <button data-brand="Porsche">Porsche</button>
+    <button data-brand="Audi">Audi</button>
+    <button data-brand="McLaren">McLaren</button>
+    <button data-brand="Favorites">❤️ Избранное</button>
+  </div>
+
+  <div class="car-grid" id="carGrid"></div>
+
+</section>
+
+<section class="section about" id="about">
+  <h2 class="section-title">ABOUT <span>US</span></h2>
+  <p>
+    BLACK GARAGE — коллекция легендарных автомобилей.
+    Здесь собраны самые красивые, быстрые и мощные
+    машины со всего мира.
+  </p>
+  <p>POWER. SPEED. LUXURY.</p>
+</section>
+
+<footer>
+  <h2>BLACK <span>GARAGE</span></h2>
+  <p>© 2026 BLACK GARAGE. All rights reserved.</p>
+</footer>
+
+<script>
+const cars = [
+  {
+    name: "BMW M4 Competition",
+    brand: "BMW",
+    year: 2024,
+    hp: 510,
+    speed: "290 km/h",
+    price: "$85,000",
+    image: "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800"
+  },
+  {
+    name: "BMW M5",
+    brand: "BMW",
+    year: 2024,
+    hp: 727,
+    speed: "305 km/h",
+    price: "$120,000",
+    image: "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800"
+  },
+  {
+    name: "Mercedes AMG GT",
+    brand: "Mercedes",
+    year: 2024,
+    hp: 585,
+    speed: "315 km/h",
+    price: "$140,000",
+    image: "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800"
+  },
+  {
+    name: "Ferrari 488",
+    brand: "Ferrari",
+    year: 2022,
+    hp: 670,
+    speed: "330 km/h",
+    price: "$280,000",
+    image: "https://images.unsplash.com/photo-1592198084033-aade902d1aae?w=800"
+  },
+  {
+    name: "Lamborghini Huracan",
+    brand: "Lamborghini",
+    year: 2023,
+    hp: 640,
+    speed: "325 km/h",
+    price: "$250,000",
+    image: "https://images.unsplash.com/photo-1511919884226-fd3cad34687c?w=800"
+  },
+  {
+    name: "Porsche 911 GT3",
+    brand: "Porsche",
+    year: 2024,
+    hp: 510,
+    speed: "311 km/h",
+    price: "$180,000",
+    image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800"
+  },
+  {
+    name: "Audi R8",
+    brand: "Audi",
+    year: 2022,
+    hp: 620,
+    speed: "331 km/h",
+    price: "$160,000",
+    image: "https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?w=800"
+  },
+  {
+    name: "McLaren 720S",
+    brand: "McLaren",
+    year: 2023,
+    hp: 720,
+    speed: "341 km/h",
+    price: "$300,000",
+    image: "https://images.unsplash.com/photo-1621135802920-133df287f89c?w=800"
+  }
+];
+
+const grid = document.getElementById("carGrid");
+const search = document.getElementById("search");
+
+let currentBrand = "All";
+let favorites = [];
+
+try {
+  favorites = JSON.parse(
+    localStorage.getItem("blackGarageFavorites") || "[]"
+  );
+
+  if (!Array.isArray(favorites)) favorites = [];
+} catch {
+  favorites = [];
+}
+
+function displayCars() {
+  const query = search.value.toLowerCase();
+
+  const filtered = cars.filter(car => {
+    const matchesBrand =
+      currentBrand === "All" ||
+      car.brand === currentBrand ||
+      (currentBrand === "Favorites" && favorites.includes(car.name));
+
+    const matchesSearch =
+      car.name.toLowerCase().includes(query) ||
+      car.brand.toLowerCase().includes(query);
+
+    return matchesBrand && matchesSearch;
+  });
+
+  if (filtered.length === 0) {
+    grid.innerHTML = '<div class="empty">Автомобили не найдены 😔</div>';
+    return;
+  }
+
+  grid.innerHTML = filtered.map(car => `
+    <div class="car-card">
+      <img
+        src="${car.image}"
+        alt="${car.name}"
+        loading="lazy"
+      >
+
+      <div class="car-info">
+        <h3>${car.name}</h3>
+
+        <p>Марка: <strong>${car.brand}</strong></p>
+        <p>Год: <strong>${car.year}</strong></p>
+        <p>Мощность: <strong>${car.hp} HP</strong></p>
+        <p>Скорость: <strong>${car.speed}</strong></p>
+
+        <div class="car-price">${car.price}</div>
+
+        <button
+          class="favorite ${favorites.includes(car.name) ? "selected" : ""}"
+          data-name="${car.name}"
+        >
+          ${favorites.includes(car.name)
+            ? "❤️ В избранном"
+            : "♡ Добавить в избранное"}
+        </button>
+      </div>
+    </div>
+  `).join("");
+}
+
+document.querySelectorAll(".filters button").forEach(button => {
+  button.addEventListener("click", () => {
+    document.querySelectorAll(".filters button").forEach(btn => {
+      btn.classList.remove("active");
+    });
+
+    button.classList.add("active");
+    currentBrand = button.dataset.brand;
+    displayCars();
+  });
+});
+
+search.addEventListener("input", displayCars);
+
+grid.addEventListener("click", event => {
+  const button = event.target.closest(".favorite");
+
+  if (!button) return;
+
+  const name = button.dataset.name;
+
+  if (favorites.includes(name)) {
+    favorites = favorites.filter(item => item !== name);
+  } else {
+    favorites.push(name);
+  }
+
+  localStorage.setItem(
+    "blackGarageFavorites",
+    JSON.stringify(favorites)
+  );
+
+  displayCars();
+});
+
+displayCars();
+</script>
+
+</body>
+</html>
